@@ -1,6 +1,15 @@
-def print_digit(num):
+def p_num(num):
     print(num, end='')
 
 
-for digit in '88005553535':
-    print_digit(digit)
+p_num(8)
+p_num(8)
+p_num(0)
+p_num(0)
+p_num(5)
+p_num(5)
+p_num(5)
+p_num(3)
+p_num(5)
+p_num(3)
+p_num(5)
