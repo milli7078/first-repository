@@ -52,11 +52,3 @@ class StringUtils:
             string = string.replace(symbol, "")
         return string
 
-    def ensure_string_if(s: str) -> str:
-        """
-        Проверяет строку s. Если она пустая, возвращает "", иначе возвращает саму s.
-        """
-        if not s:
-            return ""
-        return s
-
