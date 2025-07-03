@@ -28,9 +28,6 @@ try:
     button.click()
 
 
-    time.sleep(1)
-
-
     updated_text = button.text
     print(f"Текст кнопки после нажатия: \"{updated_text}\"")
 
