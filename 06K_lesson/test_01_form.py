@@ -26,16 +26,17 @@ def test_form_validation():
 
     try:
         success = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".success-message, .alert-success"))
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".alert-success"))
         )
-        print("✅ Форма успешно отправлена:", success.text)
+        assert "success" in success.get_attribute("class") or "успешно" in success.text.lower()
+        print("✅ Успешная отправка формы:", success.text)
     except TimeoutException:
-        print("⚠️ Нет подтверждения успеха, проверяем ошибки…")
         try:
-            error = driver.find_element(By.CSS_SELECTOR, ".error-message, .alert-danger")
-            print("❌ Обнаружена ошибка:", error.text)
+            error = driver.find_element(By.CSS_SELECTOR, ".alert-danger")
+            assert "error" in error.get_attribute("class") or error.text.strip() != ""
+            print("❌ Ошибка при отправке формы:", error.text)
         except NoSuchElementException:
-            print("❌ Сообщение об ошибке не найдено — проверьте поведение формы вручную.")
+            raise AssertionError("❌ Ни успешного, ни ошибочного сообщения не найдено. Проверьте поведение формы.")
 
-    time.sleep(5)
+    time.sleep(2)
     driver.quit()
